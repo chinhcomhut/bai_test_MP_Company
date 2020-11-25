@@ -6,6 +6,8 @@ import com.codegym.wbdlaptop.repository.IDM_VatTuRepository;
 import com.codegym.wbdlaptop.security.service.UserDetailsServiceImpl;
 import com.codegym.wbdlaptop.service.IDM_VatTuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,5 +38,20 @@ public class DM_VatTuServiceImpl implements IDM_VatTuService {
     @Override
     public List<DM_VatTu> findAll() {
         return vatTuRepository.findAll();
+    }
+
+    @Override
+    public Page<DM_VatTu> findAll(Pageable pageable) {
+        return vatTuRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<DM_VatTu> findByDm_nhaCC(Integer ma_nhaCC) {
+        return vatTuRepository.findByDm_nhaCC(ma_nhaCC);
+    }
+
+    @Override
+    public Page<DM_VatTu> findByDm_nuoc(Integer ma_nuoc) {
+        return vatTuRepository.findByDm_nuoc(ma_nuoc);
     }
 }

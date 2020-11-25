@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DM_NuocServiceImpl implements IDM_NuocService {
@@ -31,5 +32,10 @@ public class DM_NuocServiceImpl implements IDM_NuocService {
     @Override
     public List<DM_Nuoc> findAll() {
         return idm_nuocRepository.findAll();
+    }
+
+    @Override
+    public Optional<DM_Nuoc> findById(Long id) {
+        return idm_nuocRepository.findById(id);
     }
 }

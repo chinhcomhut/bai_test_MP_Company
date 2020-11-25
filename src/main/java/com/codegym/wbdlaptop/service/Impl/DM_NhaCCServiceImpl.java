@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DM_NhaCCServiceImpl implements IDM_NhaCCService {
@@ -31,5 +32,10 @@ public class DM_NhaCCServiceImpl implements IDM_NhaCCService {
     @Override
     public List<DM_NhaCC> findAll() {
         return nhaCCRepository.findAll();
+    }
+
+    @Override
+    public Optional<DM_NhaCC> findById(Long id) {
+        return nhaCCRepository.findById(id);
     }
 }
