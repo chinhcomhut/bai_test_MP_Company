@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "dmvattu")
+@Table(name = "dmVatTu")
 public class DM_VatTu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +23,29 @@ public class DM_VatTu {
     private String dvTinh;
     @ManyToOne
     User user;
-    @ManyToOne
-    DM_Nuoc dm_nuoc;
-    @ManyToOne
-    DM_NhaCC dm_nhaCC;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+            @JoinColumn(name="MaNuoc", referencedColumnName="maNuoc")
+    })
+    private DM_Nuoc dm_nuoc;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+            @JoinColumn(name="MaNCC", referencedColumnName="maNCC")
+    })
+    private DM_NhaCC dm_nhaCC;
 
     public DM_VatTu() {
+    }
+
+    public DM_VatTu(Long id, @NotBlank @Size(max = 5) String maVT, @Size(max = 25) String maKKS, @NotBlank @Size(max = 50) String tenVT, @NotBlank @Size(max = 25) String dvTinh, User user, DM_Nuoc dm_nuoc, DM_NhaCC dm_nhaCC) {
+        this.id = id;
+        this.maVT = maVT;
+        this.maKKS = maKKS;
+        this.tenVT = tenVT;
+        this.dvTinh = dvTinh;
+        this.user = user;
+        this.dm_nuoc = dm_nuoc;
+        this.dm_nhaCC = dm_nhaCC;
     }
 
     public Long getId() {
